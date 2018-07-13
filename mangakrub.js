@@ -54,7 +54,7 @@ const main = () => {
                 const { document } = new JSDOM(body).window
                 const list = Array.from(document.querySelectorAll('div.img-wrapper img.branwdo'));
                 var pagesPool = new PromisePool(() => {
-                  if(list.length==0)return;;
+                  if(list.length==0)return;
                   const img = list.pop();
                   if(!img) {
                     log.debug('empty image',img)
