@@ -6,7 +6,12 @@ const download = require('download-file')
 const PromisePool = require('es6-promise-pool')
 const log = require('./log')
 
+
+
 const fileName = 'db/mangakrub.txt'
+const CHAPTER_FETCH_CONCURENT_LIMIT = 4;
+const PAGE_FETCH_CONCURENT_LIMIT = 10;
+
 if (!fs.existsSync('mangakrub')) {
   fs.mkdirSync('mangakrub')
 }
@@ -84,7 +89,7 @@ const main = () => {
                       }
                     )
                   })
-                },4);
+                },PAGE_FETCH_CONCURENT_LIMIT);
                 var pagesPoolPromise = pagesPool.start()
 
                 pagesPoolPromise.then(
@@ -103,7 +108,7 @@ const main = () => {
             }
           })
         })
-      }, 2)
+      }, CHAPTER_FETCH_CONCURENT_LIMIT)
 
       var poolPromise = pool.start()
 
