@@ -38,6 +38,7 @@ const main = () => {
     .then(allChapter => {
       var pool = new PromisePool(() => {
         if(allChapter.length==0)return;
+        log.notify('Remaining.....................',allChapter.length)
         const cartoon = allChapter.pop()
         if (!cartoon) {
           log.debug('empty chapter return',cartoon)
