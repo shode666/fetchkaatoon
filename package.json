@@ -7,7 +7,9 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "babel-node": "babel-node --presets=es2015 --ignore='foo|bar|baz'",
         "preload": "nodemon -r babel-register -r babel-polyfill  server.js",
-        "start": "nodemon --exec npm run babel-node server.js"
+        "start-d": "nodemon --exec npm run babel-node server.js",
+        "start": "babel src -d . && node mangakrub.js",
+        "build": "babel src -d ."
     },
     "author": "",
     "license": "ISC",
@@ -19,6 +21,7 @@
         "lodash": "^4.17.10",
         "moment": "^2.22.2",
         "request": "^2.87.0",
+        "request-promise-native": "^1.0.5",
         "rimraf": "^2.6.2",
         "rx-dom": "^7.0.3",
         "rxjs": "^6.2.1",
