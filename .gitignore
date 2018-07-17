@@ -3,3 +3,5 @@ mangakrub/
 db/
 .vscode/
 package-lock.json
+mangakrub.js
+log.js
