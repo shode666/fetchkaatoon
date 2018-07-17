@@ -94,20 +94,8 @@ const main = async () => {
                           resolve(true)
                         })
                         request.on('error', err => {
-                          if (err.code === 'ECONNRESET') {
-                            const retry = altProtocol.get(link, function(response) {
-                              response.pipe(downloadFile)
-                              log.notify('Download complete', title, pageName, `${filePath}/${pageName}.jpg`)
-                              resolve(true)
-                            })
-                            retry.on('error', err => {
-                              log.error('Download fail', title, pageName, link, err)
-                              resolve(true)
-                            })
-                          } else {
-                            log.error('Download fail', title, pageName, link, err)
-                            resolve(true)
-                          }
+                          log.error('Download fail', title, pageName, link, err)
+                          resolve(true)
                         })
                       } catch (err) {
                         log.error('Download fail', title, pageName, link, err)
@@ -115,6 +103,8 @@ const main = async () => {
                       }
                     })
                   )
+                }else{
+                  resove(true)
                 }
               }
               try {
@@ -134,6 +124,9 @@ const main = async () => {
                 log.error(err)
                 resolve(true)
               }
+            }else{
+              log.warn('Nobody Nobody but you',title)
+              resolve(true)
             }
           } catch (err) {
             log.error(err)
